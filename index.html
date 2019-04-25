@@ -13,9 +13,6 @@
 
 
 <style>
-
-
-
     .button{
         float: left;
         text-align: center;
@@ -106,11 +103,11 @@
     <div id="div_border_info" >
         <div >
             <div id="div_text">
-                Текст <input type="text" id="text">
+               <label id="label_text">Текст</label> <input type="text" id="text">
             </div>
             
             <div id="div_color">
-                Цвет <input type="text" id="color">
+                <label id="label_color">Цвет</label> <input type="text" id="color">
             </div>
             
             <div id="div_id">
@@ -118,8 +115,7 @@
             </div>    
             
             <div id="div_links">
-                Ссылка <input type="text" id="links">
-                    // <a href=""></a>
+                Ссылка <input type="text" id="links">                   
             </div>
             
             <div>
@@ -141,62 +137,86 @@
 
 <script>
     
+    var item = "";
+    var i = 0;
+    
 function click_btn()
-{
+    {
+        showMenu()
+        
+     document.getElementById("div_links").style.display = "none";
     
-    document.getElementById("div_border_info").style.display = "block";
-    document.getElementById("div_links").style.display = "none";
   
-    
+    item =  "btn";
 }
 
 function click_link()
 {
-    document.getElementById("div_border_info").style.display = "block";
-    document.getElementById("div_id").style.display = "none";
-    document.getElementById("div_color").style.display = "none";
+   showMenu()
+     document.getElementById("div_color").style.display = "none";
+    
+    item = "link";
     
 }
     
 function click_img()
 {
-    document.getElementById("div_border_info").style.display = "block";
-    document.getElementById("div_id").style.display = "none";
-    document.getElementById("div_color").style.display = "none";
     
+    showMenu()
+     document.getElementById("label_text").innerText = "Ширина";
+        document.getElementById("label_color").innerText = "Высота";
+    
+    item = "img";
 }
+ 
+ function showMenu(){
+    i ++;
+     clearValues();
+    if(i == 1){
+        document.getElementById("div_border_info").style.display = "block"; 
+    }
+    else{
+          document.getElementById("div_border_info").style.display = "none"; 
+       
+        i = 0;
+    }
+    }
     
 function click_save()
 {
-    document.getElementById("div_border_info").style.display = "none";
+  
     var text =  document.getElementById("text").value;
     var color = document.getElementById("color").value;
     var id = document.getElementById("id").value;
-   //  document.getElementById("work_form").innerHTML += "<button id='"+ id + "' style='background-color:" + color+"'>" + text + "</button>";
-   
-   
-   
-   
-    if ( click_link() ){
-         document.getElementById("work_form").innerHTML += "<a href= ' "+ + " '>" + text + "</a>";
-    }else if( click_btn () ){
-        document.getElementById("work_form").innerHTML += "<button id='"+ id + "' style='background-color:" + color+"'>" + text + "</button>";
-    }else if(click_img){
-        document.getElementById("work_form").innerHTML += "<img src= '"+ + "' >";
+    var src = document.getElementById("links").value;
+    
+ 
+    if(item == "btn"){
+     document.getElementById("work_form").innerHTML += "<button id='"+ id + "' style='background-color:" + color+"'>" + text + "</button>";
+    }if(item == "link"){
+        document.getElementById("work_form").innerHTML += "<a href='"+ src +"'>" +text+"</a>";
+    }if(item == "img"){
+        document.getElementById("work_form").innerHTML += "<img src='"+ src +"' width='" + text + "px' height='" + color +"px'/>";
     }
-
-
-
-    clearValues();
-    document.getElementById("div_border_info").style.display = "none";
-    
-    
+    clearData();
+       
 }
-   
-    function clearValues(){
+   function clearData(){
         document.getElementById("text").value  ="";
         document.getElementById("color").value   ="";
         document.getElementById("id").value  ="";
+        document.getElementById("links").value = "";
+    }
+    function clearValues(){
+     
+       
+        document.getElementById("label_text").innerText = "Текст";
+        document.getElementById("label_color").innerText = "Цвет";
+        
+        document.getElementById("div_color").style.display = "inline";
+        document.getElementById("div_links").style.display = "inline";
+        
+         document.getElementById("div_border_info").style.display = "none";
     }
     
     
