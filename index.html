@@ -1,8 +1,20 @@
 <!DOCTYPE HTML>
+
+
+
 <html>
 <head>
     
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
 <style>
+
+
 
     .button{
         float: left;
@@ -74,6 +86,10 @@
 </head>
 <body>
 
+
+
+
+
     <div class="div_border">
         
         <button class="button btn" onclick="click_btn()">btn</button>
@@ -89,20 +105,21 @@
     
     <div id="div_border_info" >
         <div >
-            <div>
+            <div id="div_text">
                 Текст <input type="text" id="text">
             </div>
             
-            <div>
+            <div id="div_color">
                 Цвет <input type="text" id="color">
             </div>
             
-            <div>
+            <div id="div_id">
                 ID <input type="text" id="id">
             </div>    
             
             <div id="div_links">
                 Ссылка <input type="text" id="links">
+                    // <a href=""></a>
             </div>
             
             <div>
@@ -120,6 +137,8 @@
         
     </div>
     
+    
+
 <script>
     
 function click_btn()
@@ -133,22 +152,40 @@ function click_btn()
 
 function click_link()
 {
+    document.getElementById("div_border_info").style.display = "block";
+    document.getElementById("div_id").style.display = "none";
+    document.getElementById("div_color").style.display = "none";
     
 }
     
 function click_img()
 {
+    document.getElementById("div_border_info").style.display = "block";
+    document.getElementById("div_id").style.display = "none";
+    document.getElementById("div_color").style.display = "none";
     
 }
     
 function click_save()
 {
-   document.getElementById("div_border_info").style.display = "none";
-   var text =  document.getElementById("text").value;
-   var color = document.getElementById("color").value;
+    document.getElementById("div_border_info").style.display = "none";
+    var text =  document.getElementById("text").value;
+    var color = document.getElementById("color").value;
     var id = document.getElementById("id").value;
+   //  document.getElementById("work_form").innerHTML += "<button id='"+ id + "' style='background-color:" + color+"'>" + text + "</button>";
    
-document.getElementById("work_form").innerHTML += "<button id='"+ id + "' style='background-color:" + color+"'>" + text + "</button>"
+   
+   
+   
+    if ( click_link() ){
+         document.getElementById("work_form").innerHTML += "<a href= ' "+ + " '>" + text + "</a>";
+    }else if( click_btn () ){
+        document.getElementById("work_form").innerHTML += "<button id='"+ id + "' style='background-color:" + color+"'>" + text + "</button>";
+    }else if(click_img){
+        document.getElementById("work_form").innerHTML += "<img src= '"+ + "' >";
+    }
+
+
 
     clearValues();
     document.getElementById("div_border_info").style.display = "none";
@@ -157,20 +194,20 @@ document.getElementById("work_form").innerHTML += "<button id='"+ id + "' style=
 }
    
     function clearValues(){
-          document.getElementById("text").value  ="";
-      document.getElementById("color").value   ="";
+        document.getElementById("text").value  ="";
+        document.getElementById("color").value   ="";
         document.getElementById("id").value  ="";
     }
     
     
-function click_clear()
-{
-    var myNode= document.getElementById("work_form");
-    
-    while (myNode.firstChild) {
-    myNode.removeChild(myNode.firstChild);
+    function click_clear()
+    {
+        var myNode= document.getElementById("work_form");
+        
+        while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+        }
     }
-}
 
 </script>
 
